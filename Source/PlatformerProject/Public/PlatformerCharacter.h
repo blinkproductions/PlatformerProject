@@ -51,6 +51,9 @@ protected:
 	UPROPERTY(EditDefaultsOnly)
 	float RotationRate = 10.f;
 
+	UPROPERTY(EditDefaultsOnly)
+	uint8 BulletAmount = 10.f;
+
 private:	
 	void MoveForward(float val);
 	void MoveRight(float val);

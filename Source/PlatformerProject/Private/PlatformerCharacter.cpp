@@ -15,6 +15,11 @@ APlatformerCharacter::APlatformerCharacter()
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArmComponent"));
 	SpringArm->TargetArmLength = 300.0f; // The camera follows at this distance behind the character	
 	SpringArm->bUsePawnControlRotation = true; // Rotate the arm based on the controller
+	SpringArm->SocketOffset = FVector(0.f,0.f,200.f);
+	SpringArm->bEnableCameraLag = true;
+	SpringArm->bEnableCameraRotationLag = true;
+	SpringArm->CameraLagSpeed = 10.f;
+	SpringArm->CameraRotationLagSpeed = 10.f;
 	SpringArm->SetupAttachment(RootComponent);
 	
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComponent"));
@@ -29,6 +34,9 @@ APlatformerCharacter::APlatformerCharacter()
 	// Configure character movement
 	GetCharacterMovement()->bOrientRotationToMovement = true; // Character moves in the direction of input...	
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 540.0f, 0.0f); // ...at this rotation rate
+	GetCharacterMovement()->AirControl = 1.5f;
+
+	
 
 	JumpHeight = 600.f;
 	bCanDoubleJump = true;
