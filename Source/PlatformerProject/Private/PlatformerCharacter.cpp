@@ -3,6 +3,8 @@
 
 #include "PlatformerCharacter.h"
 #include "Camera/CameraComponent.h"
+#include "Components/StaticMeshComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
@@ -25,6 +27,13 @@ APlatformerCharacter::APlatformerCharacter()
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("CameraComponent"));
 	Camera->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
 	Camera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
+
+	S_Weapon = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponentWeapon"));
+	S_Weapon->SetupAttachment(GetMesh());
+
+	SK_Weapon = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkeletalMeshComponentWeapon"));
+	SK_Weapon->SetupAttachment(GetMesh());
+	
 
 	// Don't rotate when the controller rotates. Let that just affect the camera.
 	bUseControllerRotationPitch = false;

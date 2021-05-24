@@ -8,6 +8,8 @@
 
 class UCameraComponent;
 class USpringArmComponent;
+class UStaticMeshComponent;
+class USkeletalMeshComponent;
 
 UCLASS()
 class PLATFORMERPROJECT_API APlatformerCharacter : public ACharacter
@@ -33,6 +35,12 @@ protected:
 
 	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* SpringArm;
+
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* S_Weapon;
+
+	UPROPERTY(VisibleAnywhere)
+	USkeletalMeshComponent* SK_Weapon;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Specs")
 	float JumpHeight;
