@@ -3,7 +3,7 @@
 
 #include "PlatformerCharacter.h"
 #include "Camera/CameraComponent.h"
-#include "Components/StaticMeshComponent.h"
+#include "Components/SceneComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -28,11 +28,20 @@ APlatformerCharacter::APlatformerCharacter()
 	Camera->SetupAttachment(SpringArm, USpringArmComponent::SocketName);
 	Camera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
-	S_Weapon = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StaticMeshComponentWeapon"));
-	S_Weapon->SetupAttachment(GetMesh());
+	WeaponSheath = CreateDefaultSubobject<USceneComponent>(TEXT("SceneComponentSheath"));
+	WeaponSheath->SetWorldLocation(FVector(0.f, 0.f, 0.f));
+	//WeaponSheath->SetWorldRotation(FRotator(-190.f, 10.f,0.f));
+	WeaponSheath->SetupAttachment(GetMesh(), FName("WeaponSheath1"));
 
-	SK_Weapon = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkeletalMeshComponentWeapon"));
-	SK_Weapon->SetupAttachment(GetMesh());
+	
+
+	WeaponInHand = CreateDefaultSubobject<USceneComponent>(TEXT("SceneComponentWeaponInHand"));
+	//WeaponInHand->SetWorldLocation(FVector(0.f, 0.f, 0.f));
+	//WeaponInHand->SetWorldRotation(FRotator(-185.f, 83.f,-36.f));
+	WeaponInHand->SetupAttachment(GetMesh(), FName("WeaponSocket"));
+
+	EquippedWeapon1 = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("EquippedWeapon1Component"));
+	EquippedWeapon1->SetupAttachment(WeaponSheath);
 	
 
 	// Don't rotate when the controller rotates. Let that just affect the camera.

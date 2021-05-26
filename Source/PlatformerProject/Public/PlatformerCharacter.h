@@ -8,7 +8,7 @@
 
 class UCameraComponent;
 class USpringArmComponent;
-class UStaticMeshComponent;
+class USceneComponent;
 class USkeletalMeshComponent;
 
 UCLASS()
@@ -36,11 +36,14 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* SpringArm;
 
-	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* S_Weapon;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	USceneComponent* WeaponSheath;
 
-	UPROPERTY(VisibleAnywhere)
-	USkeletalMeshComponent* SK_Weapon;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	USkeletalMeshComponent* EquippedWeapon1;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	USceneComponent* WeaponInHand;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Specs")
 	float JumpHeight;
