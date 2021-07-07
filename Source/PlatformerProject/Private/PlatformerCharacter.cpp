@@ -60,6 +60,7 @@ APlatformerCharacter::APlatformerCharacter()
 	bCanDoubleJump = true;
 	NumberOfExtraJumps = 1;
 	DoubleJumpCounter = 0;
+	
 
 }
 
@@ -67,7 +68,7 @@ APlatformerCharacter::APlatformerCharacter()
 void APlatformerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	DefaultSpringArmLength = SpringArm->TargetArmLength;
 }
 
 // Called every frame

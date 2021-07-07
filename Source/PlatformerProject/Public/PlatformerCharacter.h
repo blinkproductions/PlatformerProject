@@ -33,7 +33,7 @@ protected:
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* Camera;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 	USpringArmComponent* SpringArm;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
@@ -64,6 +64,16 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly)
 	uint8 BulletAmount = 10.f;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool bIsWeaponDrawn = false;
+
+	UPROPERTY(BlueprintReadWrite)
+	bool bIsAttacking = false;
+
+	UPROPERTY(BlueprintReadWrite)
+	float DefaultSpringArmLength;
+	
 
 private:	
 	void MoveForward(float val);
